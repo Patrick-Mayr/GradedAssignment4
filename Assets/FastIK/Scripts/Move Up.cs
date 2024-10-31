@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class MoveUp : MonoBehaviour
 {
-    GameObject bodyTarget;
+    public GameObject player;
+    public int speed;
+    public Transform upPos;
+    public Transform downPos;
+    //GameObject bodyTarget;
     // Start is called before the first frame update
     void Start()
     {
-        bodyTarget = GetComponent<GameObject>();
+        //bodyTarget = GetComponent<GameObject>();
     }
 
 
@@ -16,6 +20,8 @@ public class MoveUp : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(0, 0, 2);
+        float time = Mathf.PingPong(Time.time * speed, 1);
+        player.transform.position = Vector3.Lerp(upPos.position, downPos.position, time);
+
     }
 }
